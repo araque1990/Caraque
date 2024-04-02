@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Caraque_PromoAdvanced::promo_admin_grid" title="Advanced Promotions" translate="title" module="Caraque_PromoAdvanced" sortOrder="0" parent="Magento_CatalogRule::promo" action="promo_advanced/index/index/" resource="Caraque_PromoAdvanced::promo_admin_grid"/>
+    </menu>
+</config>

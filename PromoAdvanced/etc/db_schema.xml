@@ -1,0 +1,156 @@
+<?xml version="1.0" ?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <table name="promo_advanced_entity" resource="default" engine="innodb" comment="Promo Advanced Entity">
+    <column xsi:type="int" name="entity_id" unsigned="false" nullable="false" identity="true" comment="Entity ID"/>
+    <column xsi:type="datetime" name="date_start" nullable="true" comment="Start Date"/>
+    <column xsi:type="datetime" name="date_end" nullable="true" comment="End Date"/>
+    <column xsi:type="int" name="position" default="0" comment="Position" />
+    <column xsi:type="boolean" name="status" default="false" comment="Status"/>
+    <column xsi:type="boolean" name="multiple_use" default="false" comment="Multiple Use"/>
+    <constraint xsi:type="primary" referenceId="PRIMARY">
+      <column name="entity_id"/>
+    </constraint>
+  </table>
+
+  <table name="promo_advanced_entity_datetime" resource="default" engine="innodb" comment="Promo Advanced Entity Datetime">
+    <column xsi:type="int" name="value_id" unsigned="false" nullable="false" identity="true" comment="Value ID"/>
+    <column xsi:type="smallint" name="attribute_id" unsigned="true" nullable="false" identity="false" default="0" comment="Attribute ID"/>
+    <column xsi:type="int" name="entity_id" unsigned="false" nullable="false" identity="false" comment="Entity ID"/>
+    <column xsi:type="smallint" name="store_id" unsigned="true" nullable="false" identity="false" default="0" comment="Store ID"/>
+    <column xsi:type="datetime" name="value" nullable="true" comment="Value"/>
+    <constraint xsi:type="primary" referenceId="PRIMARY">
+      <column name="value_id"/>
+    </constraint>
+    <constraint xsi:type="foreign" referenceId="PROMO_ADVANCED_ENTITY_DATETIME_ATTRIBUTE_ID_EAV_ATTRIBUTE_ATTRIBUTE_ID" table="promo_advanced_entity_datetime" column="attribute_id" referenceTable="eav_attribute" referenceColumn="attribute_id" onDelete="CASCADE"/>
+    <constraint xsi:type="foreign" referenceId="PROMO_ADVANCED_ENTITY_DATETIME_ENTITY_ID_PROMO_ADVANCED_ENTITY_ENTITY_ID" table="promo_advanced_entity_datetime" column="entity_id" referenceTable="promo_advanced_entity" referenceColumn="entity_id" onDelete="CASCADE"/>
+    <constraint xsi:type="foreign" referenceId="PROMO_ADVANCED_ENTITY_DATETIME_STORE_ID_STORE_STORE_ID" table="promo_advanced_entity_datetime" column="store_id" referenceTable="store" referenceColumn="store_id" onDelete="CASCADE"/>
+    <constraint xsi:type="unique" referenceId="PROMO_ADVANCED_ENTITY_DATETIME_ENTITY_ID_ATTRIBUTE_ID_STORE_ID">
+      <column name="entity_id"/>
+      <column name="attribute_id"/>
+      <column name="store_id"/>
+    </constraint>
+    <index referenceId="PROMO_ADVANCED_ENTITY_DATETIME_ENTITY_ID" indexType="btree">
+      <column name="entity_id"/>
+    </index>
+    <index referenceId="PROMO_ADVANCED_ENTITY_DATETIME_ATTRIBUTE_ID" indexType="btree">
+      <column name="attribute_id"/>
+    </index>
+    <index referenceId="PROMO_ADVANCED_ENTITY_DATETIME_STORE_ID" indexType="btree">
+      <column name="store_id"/>
+    </index>
+  </table>
+
+  <table name="promo_advanced_entity_decimal" resource="default" engine="innodb" comment="Promo Advanced Entity Decimal">
+    <column xsi:type="int" name="value_id" unsigned="false" nullable="false" identity="true" comment="Value ID"/>
+    <column xsi:type="smallint" name="attribute_id" unsigned="true" nullable="false" identity="false" default="0" comment="Attribute ID"/>
+    <column xsi:type="int" name="entity_id" unsigned="false" nullable="false" identity="false" comment="Entity ID"/>
+    <column xsi:type="smallint" name="store_id" unsigned="true" nullable="false" identity="false" default="0" comment="Store ID"/>
+    <column xsi:type="decimal" scale="4" precision="12" default="0" name="value" nullable="true" comment="Value"/>
+    <constraint xsi:type="primary" referenceId="PRIMARY">
+      <column name="value_id"/>
+    </constraint>
+    <constraint xsi:type="foreign" referenceId="PROMO_ADVANCED_ENTITY_DECIMAL_ATTRIBUTE_ID_EAV_ATTRIBUTE_ATTRIBUTE_ID" table="promo_advanced_entity_decimal" column="attribute_id" referenceTable="eav_attribute" referenceColumn="attribute_id" onDelete="CASCADE"/>
+    <constraint xsi:type="foreign" referenceId="PROMO_ADVANCED_ENTITY_DECIMAL_ENTITY_ID_PROMO_ADVANCED_ENTITY_ENTITY_ID" table="promo_advanced_entity_decimal" column="entity_id" referenceTable="promo_advanced_entity" referenceColumn="entity_id" onDelete="CASCADE"/>
+    <constraint xsi:type="foreign" referenceId="PROMO_ADVANCED_ENTITY_DECIMAL_STORE_ID_STORE_STORE_ID" table="promo_advanced_entity_decimal" column="store_id" referenceTable="store" referenceColumn="store_id" onDelete="CASCADE"/>
+    <constraint xsi:type="unique" referenceId="PROMO_ADVANCED_ENTITY_DECIMAL_ENTITY_ID_ATTRIBUTE_ID_STORE_ID">
+      <column name="entity_id"/>
+      <column name="attribute_id"/>
+      <column name="store_id"/>
+    </constraint>
+    <index referenceId="PROMO_ADVANCED_ENTITY_DECIMAL_ENTITY_ID" indexType="btree">
+      <column name="entity_id"/>
+    </index>
+    <index referenceId="PROMO_ADVANCED_ENTITY_DECIMAL_ATTRIBUTE_ID" indexType="btree">
+      <column name="attribute_id"/>
+    </index>
+    <index referenceId="PROMO_ADVANCED_ENTITY_DECIMAL_STORE_ID" indexType="btree">
+      <column name="store_id"/>
+    </index>
+  </table>
+
+  <table name="promo_advanced_entity_int" resource="default" engine="innodb" comment="Promo Advanced Entity Int">
+    <column xsi:type="int" name="value_id" unsigned="false" nullable="false" identity="true" comment="Value ID"/>
+    <column xsi:type="smallint" name="attribute_id" unsigned="true" nullable="false" identity="false" default="0" comment="Attribute ID"/>
+    <column xsi:type="int" name="entity_id" unsigned="false" nullable="false" identity="false" comment="Entity ID"/>
+    <column xsi:type="smallint" name="store_id" unsigned="true" nullable="false" identity="false" default="0" comment="Store ID"/>
+    <column xsi:type="int" default="0" name="value" nullable="true" comment="Value"/>
+    <constraint xsi:type="primary" referenceId="PRIMARY">
+      <column name="value_id"/>
+    </constraint>
+    <constraint xsi:type="foreign" referenceId="PROMO_ADVANCED_ENTITY_INT_ATTRIBUTE_ID_EAV_ATTRIBUTE_ATTRIBUTE_ID" table="promo_advanced_entity_int" column="attribute_id" referenceTable="eav_attribute" referenceColumn="attribute_id" onDelete="CASCADE"/>
+    <constraint xsi:type="foreign" referenceId="PROMO_ADVANCED_ENTITY_INT_ENTITY_ID_PROMO_ADVANCED_ENTITY_ENTITY_ID" table="promo_advanced_entity_int" column="entity_id" referenceTable="promo_advanced_entity" referenceColumn="entity_id" onDelete="CASCADE"/>
+    <constraint xsi:type="foreign" referenceId="PROMO_ADVANCED_ENTITY_INT_STORE_ID_STORE_STORE_ID" table="promo_advanced_entity_int" column="store_id" referenceTable="store" referenceColumn="store_id" onDelete="CASCADE"/>
+    <constraint xsi:type="unique" referenceId="PROMO_ADVANCED_ENTITY_INT_ENTITY_ID_ATTRIBUTE_ID_STORE_ID">
+      <column name="entity_id"/>
+      <column name="attribute_id"/>
+      <column name="store_id"/>
+    </constraint>
+    <index referenceId="PROMO_ADVANCED_ENTITY_INT_ENTITY_ID" indexType="btree">
+      <column name="entity_id"/>
+    </index>
+    <index referenceId="PROMO_ADVANCED_ENTITY_INT_ATTRIBUTE_ID" indexType="btree">
+      <column name="attribute_id"/>
+    </index>
+    <index referenceId="PROMO_ADVANCED_ENTITY_INT_STORE_ID" indexType="btree">
+      <column name="store_id"/>
+    </index>
+  </table>
+
+
+  <table name="promo_advanced_entity_text" resource="default" engine="innodb" comment="Promo Advanced Entity Text">
+    <column xsi:type="int" name="value_id" unsigned="false" nullable="false" identity="true" comment="Value ID"/>
+    <column xsi:type="smallint" name="attribute_id" unsigned="true" nullable="false" identity="false" default="0" comment="Attribute ID"/>
+    <column xsi:type="int" name="entity_id" unsigned="false" nullable="false" identity="false" comment="Entity ID"/>
+    <column xsi:type="smallint" name="store_id" unsigned="true" nullable="false" identity="false" default="0" comment="Store ID"/>
+    <column xsi:type="text" name="value" nullable="true" comment="Value"/>
+    <constraint xsi:type="primary" referenceId="PRIMARY">
+      <column name="value_id"/>
+    </constraint>
+    <constraint xsi:type="foreign" referenceId="PROMO_ADVANCED_ENTITY_TEXT_ATTRIBUTE_ID_EAV_ATTRIBUTE_ATTRIBUTE_ID" table="promo_advanced_entity_text" column="attribute_id" referenceTable="eav_attribute" referenceColumn="attribute_id" onDelete="CASCADE"/>
+    <constraint xsi:type="foreign" referenceId="PROMO_ADVANCED_ENTITY_TEXT_ENTITY_ID_PROMO_ADVANCED_ENTITY_ENTITY_ID" table="promo_advanced_entity_text" column="entity_id" referenceTable="promo_advanced_entity" referenceColumn="entity_id" onDelete="CASCADE"/>
+    <constraint xsi:type="foreign" referenceId="PROMO_ADVANCED_ENTITY_TEXT_STORE_ID_STORE_STORE_ID" table="promo_advanced_entity_text" column="store_id" referenceTable="store" referenceColumn="store_id" onDelete="CASCADE"/>
+    <constraint xsi:type="unique" referenceId="PROMO_ADVANCED_ENTITY_TEXT_ENTITY_ID_ATTRIBUTE_ID_STORE_ID">
+      <column name="entity_id"/>
+      <column name="attribute_id"/>
+      <column name="store_id"/>
+    </constraint>
+    <index referenceId="PROMO_ADVANCED_ENTITY_TEXT_ENTITY_ID" indexType="btree">
+      <column name="entity_id"/>
+    </index>
+    <index referenceId="PROMO_ADVANCED_ENTITY_TEXT_ATTRIBUTE_ID" indexType="btree">
+      <column name="attribute_id"/>
+    </index>
+    <index referenceId="PROMO_ADVANCED_ENTITY_TEXT_STORE_ID" indexType="btree">
+      <column name="store_id"/>
+    </index>
+  </table>
+
+
+  <table name="promo_advanced_entity_varchar" resource="default" engine="innodb" comment="Promo Advanced Entity Varchar">
+    <column xsi:type="int" name="value_id" unsigned="false" nullable="false" identity="true" comment="Value ID"/>
+    <column xsi:type="smallint" name="attribute_id" unsigned="true" nullable="false" identity="false" default="0" comment="Attribute ID"/>
+    <column xsi:type="int" name="entity_id" unsigned="false" nullable="false" identity="false" comment="Entity ID"/>
+    <column xsi:type="smallint" name="store_id" unsigned="true" nullable="false" identity="false" default="0" comment="Store ID"/>
+    <column xsi:type="varchar" name="value" length="255" nullable="true" comment="Value"/>
+    <constraint xsi:type="primary" referenceId="PRIMARY">
+      <column name="value_id"/>
+    </constraint>
+    <constraint xsi:type="foreign" referenceId="PROMO_ADVANCED_ENTITY_VARCHAR_ATTRIBUTE_ID_EAV_ATTRIBUTE_ATTRIBUTE_ID" table="promo_advanced_entity_varchar" column="attribute_id" referenceTable="eav_attribute" referenceColumn="attribute_id" onDelete="CASCADE"/>
+    <constraint xsi:type="foreign" referenceId="PROMO_ADVANCED_ENTITY_VARCHAR_ENTITY_ID_PROMO_ADVANCED_ENTITY_ENTITY_ID" table="promo_advanced_entity_varchar" column="entity_id" referenceTable="promo_advanced_entity" referenceColumn="entity_id" onDelete="CASCADE"/>
+    <constraint xsi:type="foreign" referenceId="PROMO_ADVANCED_ENTITY_VARCHAR_STORE_ID_STORE_STORE_ID" table="promo_advanced_entity_varchar" column="store_id" referenceTable="store" referenceColumn="store_id" onDelete="CASCADE"/>
+    <constraint xsi:type="unique" referenceId="PROMO_ADVANCED_ENTITY_VARCHAR_ENTITY_ID_ATTRIBUTE_ID_STORE_ID">
+      <column name="entity_id"/>
+      <column name="attribute_id"/>
+      <column name="store_id"/>
+    </constraint>
+    <index referenceId="PROMO_ADVANCED_ENTITY_VARCHAR_ENTITY_ID" indexType="btree">
+      <column name="entity_id"/>
+    </index>
+    <index referenceId="PROMO_ADVANCED_ENTITY_VARCHAR_ATTRIBUTE_ID" indexType="btree">
+      <column name="attribute_id"/>
+    </index>
+    <index referenceId="PROMO_ADVANCED_ENTITY_VARCHAR_STORE_ID" indexType="btree">
+      <column name="store_id"/>
+    </index>
+  </table>
+</schema>

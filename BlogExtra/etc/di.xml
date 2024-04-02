@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Caraque\Blog\Observer\LogPostDetailView">
+        <plugin name="caraque_blogextra_add_data_to_post_detail_observer" type="Caraque\BlogExtra\Plugin\AddDataToPostDetailObserver"/>
+        <plugin name="caraque_blogextra_prevent_post_detail_logger" type="Caraque\BlogExtra\Plugin\PreventPostDetailLogger" disabled="true"/>
+    </type>
+    <type name="Caraque\Blog\Controller\Post\Detail">
+        <plugin name="caraque_blogextra_alternate_post_detail_template" type="Caraque\BlogExtra\Plugin\AlternatePostDetailTemplate"/>
+    </type>
+    <preference for="Caraque\Blog\Controller\Post\Detail" type="Caraque\BlogExtra\Controller\Post\Detail"/>
+</config>

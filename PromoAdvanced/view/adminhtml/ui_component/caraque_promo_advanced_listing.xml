@@ -1,0 +1,71 @@
+<?xml version="1.0"?>
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+  <argument name="data" xsi:type="array">
+    <item name="js_config" xsi:type="array">
+      <item name="provider" xsi:type="string">caraque_promo_advanced_listing.caraque_promo_advanced_listing_data_source</item>
+    </item>
+  </argument>
+  <settings>
+    <deps>
+      <dep>caraque_promo_advanced_listing.caraque_promo_advanced_listing_data_source</dep>
+    </deps>
+    <spinner>caraque_promo_advanced_columns</spinner>
+    <buttons>
+      <button name="add">
+        <url path="*/*/new"/>
+        <class>primary</class>
+        <label translate="true">Add New Custom Promotion</label>
+      </button>
+    </buttons>
+  </settings>
+  <dataSource name="caraque_promo_advanced_listing_data_source" component="Magento_Ui/js/grid/provider">
+    <settings>
+      <updateUrl path="mui/index/render" />
+    </settings>
+    <aclResource>Caraque_PromoAdvanced::promo_admin_grid</aclResource>
+
+    <dataProvider name="caraque_promo_advanced_listing_data_source" class="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider">
+      <settings>
+        <requestFieldName>entity_id</requestFieldName>
+        <primaryFieldName>entity_id</primaryFieldName>
+      </settings>
+    </dataProvider>
+  </dataSource>
+  <columns name="caraque_promo_advanced_columns">
+    <column name="entity_id">
+      <settings>
+        <label translate="true">ID</label>
+      </settings>
+    </column>
+    <column name="name">
+      <settings>
+        <label translate="true">Name</label>
+      </settings>
+    </column>
+    <column name="date_start">
+      <settings>
+        <label translate="true">Date Start</label>
+      </settings>
+    </column>
+    <column name="date_end">
+      <settings>
+        <label translate="true">Date End</label>
+      </settings>
+    </column>
+    <column name="position">
+      <settings>
+        <label translate="true">Position</label>
+      </settings>
+    </column>
+    <column name="status">
+      <settings>
+        <label translate="true">Status</label>
+      </settings>
+    </column>
+    <column name="store_id">
+      <settings>
+        <label translate="true">Store Id</label>
+      </settings>
+    </column>
+  </columns>
+</listing>
