@@ -8,7 +8,10 @@ use Magento\Framework\View\Element\UiComponent\Control\ButtonProviderInterface;
 
 class Save implements ButtonProviderInterface
 {
-    public function getButtonData()
+    /**
+     * @return array
+     */
+    public function getButtonData(): array
     {
         return [
             'label' => __('Save'),
