@@ -1,20 +1,37 @@
 <?xml version="1.0" ?>
-<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
-	<preference for="Caraque\PromoAdvanced\Api\PromoAdvancedRepositoryInterface" type="Caraque\PromoAdvanced\Model\PromoAdvancedRepository"/>
-	<preference for="Caraque\PromoAdvanced\Api\Data\PromoAdvancedInterface" type="Caraque\PromoAdvanced\Model\PromoAdvancedEntity"/>
-	<preference for="Caraque\PromoAdvanced\Api\Data\PromoAdvancedSearchResultsInterface" type="Caraque\PromoAdvanced\Model\PromoAdvancedSearchResults"/>
-	<type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
-		<arguments>
-			<argument name="collections" xsi:type="array">
-				<item name="caraque_promo_advanced_listing_data_source" xsi:type="string">Caraque\PromoAdvanced\Model\ResourceModel\PromoAdvancedEntity\Grid\Collection</item>
-			</argument>
-		</arguments>
-	</type>
-	<virtualType name="Caraque\PromoAdvanced\Model\ResourceModel\PromoAdvancedEntity\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">  
-		<arguments>
-			<argument name="mainTable" xsi:type="string">promo_advanced_entity</argument>
-			<argument name="resourceModel" xsi:type="string">Caraque\PromoAdvanced\Model\ResourceModel\PromoAdvancedEntity</argument>
-		</arguments>
-	</virtualType>
-</config> 
-    
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Caraque\PromoAdvanced\Api\PromoAdvancedRepositoryInterface"
+                type="Caraque\PromoAdvanced\Model\PromoAdvancedRepository"/>
+    <preference for="Caraque\PromoAdvanced\Api\Data\PromoAdvancedInterface"
+                type="Caraque\PromoAdvanced\Model\PromoAdvancedEntity"/>
+    <preference for="Caraque\PromoAdvanced\Api\Data\PromoAdvancedSearchResultsInterface"
+                type="Caraque\PromoAdvanced\Model\PromoAdvancedSearchResults"/>
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="caraque_promo_advanced_listing_data_source" xsi:type="string">
+                    Caraque\PromoAdvanced\Model\ResourceModel\PromoAdvancedEntity\Grid\Collection
+                </item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Caraque\PromoAdvanced\Model\ResourceModel\PromoAdvancedEntity\Grid\Collection">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">promo_advanced_entity</argument>
+            <argument name="resourceModel" xsi:type="string">
+                Caraque\PromoAdvanced\Model\ResourceModel\PromoAdvancedEntity
+            </argument>
+        </arguments>
+    </type>
+    <!-- <virtualType name="Caraque\PromoAdvanced\Model\ResourceModel\PromoAdvancedEntity\Grid\Collection"
+                  type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+         <arguments>
+             <argument name="mainTable" xsi:type="string">promo_advanced_entity</argument>
+             <argument name="resourceModel" xsi:type="string">
+                 Caraque\PromoAdvanced\Model\ResourceModel\PromoAdvancedEntity
+             </argument>
+         </arguments>
+     </virtualType>-->
+</config>
+
