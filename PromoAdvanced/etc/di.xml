@@ -16,22 +16,22 @@
             </argument>
         </arguments>
     </type>
-    <type name="Caraque\PromoAdvanced\Model\ResourceModel\PromoAdvancedEntity\Grid\Collection">
+    <!--<type name="Caraque\PromoAdvanced\Model\ResourceModel\PromoAdvancedEntity\Grid\Collection">
         <arguments>
             <argument name="mainTable" xsi:type="string">promo_advanced_entity</argument>
             <argument name="resourceModel" xsi:type="string">
                 Caraque\PromoAdvanced\Model\ResourceModel\PromoAdvancedEntity
             </argument>
         </arguments>
-    </type>
-    <!-- <virtualType name="Caraque\PromoAdvanced\Model\ResourceModel\PromoAdvancedEntity\Grid\Collection"
-                  type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
-         <arguments>
-             <argument name="mainTable" xsi:type="string">promo_advanced_entity</argument>
-             <argument name="resourceModel" xsi:type="string">
-                 Caraque\PromoAdvanced\Model\ResourceModel\PromoAdvancedEntity
-             </argument>
-         </arguments>
-     </virtualType>-->
+    </type>-->
+    <virtualType name="Caraque\PromoAdvanced\Model\ResourceModel\PromoAdvancedEntity\Grid\Collection"
+                 type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">promo_advanced_entity</argument>
+            <argument name="resourceModel" xsi:type="string">
+                Caraque\PromoAdvanced\Model\ResourceModel\PromoAdvancedEntity
+            </argument>
+        </arguments>
+    </virtualType>
 </config>
 

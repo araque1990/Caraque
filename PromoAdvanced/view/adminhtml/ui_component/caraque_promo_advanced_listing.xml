@@ -1,71 +1,161 @@
 <?xml version="1.0"?>
-<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
-  <argument name="data" xsi:type="array">
-    <item name="js_config" xsi:type="array">
-      <item name="provider" xsi:type="string">caraque_promo_advanced_listing.caraque_promo_advanced_listing_data_source</item>
-    </item>
-  </argument>
-  <settings>
-    <deps>
-      <dep>caraque_promo_advanced_listing.caraque_promo_advanced_listing_data_source</dep>
-    </deps>
-    <spinner>caraque_promo_advanced_columns</spinner>
-    <buttons>
-      <button name="add">
-        <url path="*/*/new"/>
-        <class>primary</class>
-        <label translate="true">Add New Custom Promotion</label>
-      </button>
-    </buttons>
-  </settings>
-  <dataSource name="caraque_promo_advanced_listing_data_source" component="Magento_Ui/js/grid/provider">
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">
+                caraque_promo_advanced_listing.caraque_promo_advanced_listing_data_source
+            </item>
+        </item>
+    </argument>
     <settings>
-      <updateUrl path="mui/index/render" />
+        <deps>
+            <dep>caraque_promo_advanced_listing.caraque_promo_advanced_listing_data_source</dep>
+        </deps>
+        <spinner>caraque_promo_advanced_columns</spinner>
+        <buttons>
+            <button name="add">
+                <url path="*/*/new"/>
+                <class>primary</class>
+                <label translate="true">Add New Promotion</label>
+            </button>
+        </buttons>
     </settings>
-    <aclResource>Caraque_PromoAdvanced::promo_admin_grid</aclResource>
+    <dataSource name="caraque_promo_advanced_listing_data_source" component="Magento_Ui/js/grid/provider">
+        <settings>
+            <updateUrl path="mui/index/render"/>
+            <storageConfig>
+                <param name="indexField" xsi:type="string">entity_id</param>
+            </storageConfig>
+        </settings>
+        <aclResource>Caraque_PromoAdvanced::promo_admin_grid</aclResource>
 
-    <dataProvider name="caraque_promo_advanced_listing_data_source" class="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider">
-      <settings>
-        <requestFieldName>entity_id</requestFieldName>
-        <primaryFieldName>entity_id</primaryFieldName>
-      </settings>
-    </dataProvider>
-  </dataSource>
-  <columns name="caraque_promo_advanced_columns">
-    <column name="entity_id">
-      <settings>
-        <label translate="true">ID</label>
-      </settings>
-    </column>
-    <column name="name">
-      <settings>
-        <label translate="true">Name</label>
-      </settings>
-    </column>
-    <column name="date_start">
-      <settings>
-        <label translate="true">Date Start</label>
-      </settings>
-    </column>
-    <column name="date_end">
-      <settings>
-        <label translate="true">Date End</label>
-      </settings>
-    </column>
-    <column name="position">
-      <settings>
-        <label translate="true">Position</label>
-      </settings>
-    </column>
-    <column name="status">
-      <settings>
-        <label translate="true">Status</label>
-      </settings>
-    </column>
-    <column name="store_id">
-      <settings>
-        <label translate="true">Store Id</label>
-      </settings>
-    </column>
-  </columns>
+        <dataProvider name="caraque_promo_advanced_listing_data_source"
+                      class="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider">
+            <settings>
+                <requestFieldName>id</requestFieldName>
+                <primaryFieldName>entity_id</primaryFieldName>
+            </settings>
+        </dataProvider>
+    </dataSource>
+
+
+    <listingToolbar name="listing_top">
+        <settings>
+            <sticky>true</sticky>
+        </settings>
+        <paging name="listing_paging"/>
+        <columnsControls name="columns_controls"/>
+        <bookmark name="bookmarks"/>
+        <filters name="listing_filters">
+            <filterSelect name="store_id" provider="${ $.parentName }">
+                <settings>
+                    <options class="Magento\Store\Ui\Component\Listing\Column\Store\Options"/>
+                    <caption translate="true">All Store Views</caption>
+                    <label translate="true">Store View</label>
+                    <dataScope>store_id</dataScope>
+                </settings>
+            </filterSelect>
+        </filters>
+        <filterSearch name="fulltext"/>
+        <massaction name="listing_massaction" component="Magento_Ui/js/grid/tree-massactions">
+            <settings>
+                <selectProvider>
+                    caraque_promo_advanced_listing.caraque_promo_advanced_listing.caraque_promo_advanced_columns.ids
+                </selectProvider>
+
+                <indexField>entity_id</indexField>
+
+            </settings>
+            <action name="delete">
+                <settings>
+                    <type>delete</type>
+                    <label translate="true">Delete</label>
+                    <url path="*/*/massDelete"/>
+                    <confirm>
+                        <title translate="true">Delete items</title>
+                        <message translate="true">Are you sure you want to delete the selected items?</message>
+                    </confirm>
+                </settings>
+            </action>
+        </massaction>
+    </listingToolbar>
+
+    <selectionsColumn name="ids" sortOrder="0">
+        <settings>
+            <indexField>entity_id</indexField>
+        </settings>
+    </selectionsColumn>
+
+    <columns name="caraque_promo_advanced_columns">
+
+        <settings>
+            <childDefaults>
+                <param name="fieldAction" xsi:type="array">
+                    <item name="provider" xsi:type="string">
+                        caraque_promo_advanced_listing.caraque_promo_advanced_listing.caraque_promo_advanced_columns_editor
+                    </item>
+                    <item name="target" xsi:type="string">startEdit</item>
+                    <item name="params" xsi:type="array">
+                        <item name="0" xsi:type="string">${ $.$data.rowIndex }</item>
+                        <item name="1" xsi:type="boolean">true</item>
+                    </item>
+                </param>
+            </childDefaults>
+            <editorConfig>
+                <param name="clientConfig" xsi:type="array">
+                    <item name="saveUrl" xsi:type="url" path="*/*/inlineEdit"/>
+                    <item name="validateBeforeSave" xsi:type="boolean">false</item>
+                </param>
+                <param name="selectProvider" xsi:type="string">
+                    caraque_promo_advanced_listing.caraque_promo_advanced_listing.caraque_promo_advanced_columns.ids
+                </param>
+                <param name="indexField" xsi:type="string">entity_id</param>
+                <param name="enabled" xsi:type="boolean">true</param>
+            </editorConfig>
+        </settings>
+        <selectionsColumn name="ids">
+            <settings>
+                <indexField>entity_id</indexField>
+            </settings>
+        </selectionsColumn>
+
+        <column name="entity_id">
+            <settings>
+                <label translate="true">ID</label>
+                <filter>textRange</filter>
+            </settings>
+        </column>
+        <column name="name">
+            <settings>
+                <label translate="true">Name</label>
+            </settings>
+        </column>
+        <column name="date_start">
+            <settings>
+                <label translate="true">Date Start</label>
+            </settings>
+        </column>
+        <column name="date_end">
+            <settings>
+                <label translate="true">Date End</label>
+            </settings>
+        </column>
+        <column name="position">
+            <settings>
+                <label translate="true">Position</label>
+            </settings>
+        </column>
+        <column name="status">
+            <settings>
+                <label translate="true">Status</label>
+            </settings>
+        </column>
+        <column name="store_id">
+            <settings>
+                <label translate="true">Store Id</label>
+            </settings>
+        </column>
+        <actionsColumn name="actions" class="Caraque\PromoAdvanced\Ui\Component\Listing\Column\Actions"/>
+    </columns>
 </listing>
