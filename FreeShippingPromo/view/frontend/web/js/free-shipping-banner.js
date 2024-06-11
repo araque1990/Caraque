@@ -1,7 +1,19 @@
 define(["uiComponent"], function (Component) {
     "use strict";
 
-    console.log('Free Shipping Banner UI Component has been loaded');
+    return Component.extend({
+        defaults: {
+            subtotal: 33.00,
+            template: 'Caraque_FreeShippingPromo/free-shipping-banner'
+        },
+        initialize: function () {
+            this._super();
 
-    return Component;
+            console.log(this.message);
+            console.log(this.message_xml);
+        },
+        formatCurrency: function (value) {
+            return '$' + value.toFixed(2);
+        }
+    });
 });
