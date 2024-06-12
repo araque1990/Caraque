@@ -13,8 +13,14 @@
                                     Caraque_FreeShippingPromo/js/free-shipping-banner
                                 </item>
                                 <item name="config" xsi:type="array">
-                                    <item name="message" xsi:type="string">Free Shipping Message</item>
-                                    <item name="message_xml" xsi:type="string">Message XML from default.xml</item>
+                                    <item name="messageDefault" xsi:type="string">Free Shipping on orders over $100! 😁
+                                    </item>
+                                    <item name="messageItemsInCart" xsi:type="string">You're $XX.XX away from FREE
+                                        shipping! 😎
+                                    </item>
+                                    <item name="messageFreeShipping" xsi:type="string">Your order now has FREE shipping!
+                                        🎉
+                                    </item>
                                 </item>
                             </item>
                         </item>
