@@ -20,9 +20,9 @@ class Faq extends AbstractDataProvider
     private array $loadedData;
 
     /**
-     * @param $name
-     * @param $primaryFieldName
-     * @param $requestFieldName
+     * @param string $name
+     * @param string $primaryFieldName
+     * @param string $requestFieldName
      * @param CollectionFactory $collectionFactory
      * @param array $meta
      * @param array $data
@@ -33,8 +33,8 @@ class Faq extends AbstractDataProvider
         $requestFieldName,
         CollectionFactory $collectionFactory,
         array $meta = [],
-        array $data = [])
-    {
+        array $data = []
+    ) {
         $this->collection = $collectionFactory->create();
         parent::__construct($name, $primaryFieldName, $requestFieldName, $meta, $data);
     }
