@@ -4,7 +4,7 @@
     <module name="Caraque_CheckoutMessages">
         <sequence>
             <module name="Magento_Checkout"/>
-            <module name="Caraque_JsFun"/>
+            <module name="Caraque_FreeShippingPromo"/>
         </sequence>
     </module>
 </config>
