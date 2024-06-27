@@ -17,7 +17,6 @@
                                                     <item name="template" xsi:type="string">
                                                         Caraque_CheckoutMessages/summary/shipping-time
                                                     </item>
-                                                    <item name="displayArea" xsi:type="string">extra-primary</item>
                                                 </item>
                                             </item>
                                             <item name="guarantee" xsi:type="array">
@@ -26,7 +25,6 @@
                                                     <item name="template" xsi:type="string">
                                                         Caraque_CheckoutMessages/summary/guarantee
                                                     </item>
-                                                    <item name="displayArea" xsi:type="string">extra-secondary</item>
                                                 </item>
                                             </item>
                                         </item>
