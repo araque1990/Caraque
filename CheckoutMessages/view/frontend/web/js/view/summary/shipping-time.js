@@ -3,15 +3,20 @@ define(['uiComponent'], function (Component) {
 
     return Component.extend({
         defaults: {
+            '${ $.name }shippingAddressProvider': '${ $.name }AddressProvider',
             tracks: {
                 countryId: true
             },
             listens: {
-                'checkoutProvider:shippingAddress.region_id': 'handleRegionChange'
+                '${ $.shippingAddressProvider}.region_id': 'handleRegionChange'
             },
             imports: {
-                countryId: 'checkoutProvider:shippingAddress.country_id'
-            }
+                countryId: '${ $.shippingAddressProvider}.country_id'
+            },
+        },
+        initialize: function () {
+            this._super();
+            console.log(this.name + ' is initialized.');
         },
         showMessage: function () {
             return this.countryId === 'US';
