@@ -16,7 +16,6 @@ define([
     return Component.extend({
         defaults: {
             //subtotal: ko.observable(33.00),
-            freeShippingThreshold: 100,
             subtotal: 0.00,
             template: 'Caraque_FreeShippingPromo/free-shipping-banner',
             tracks: {
@@ -41,7 +40,7 @@ define([
             self.message = ko.computed(function () {
                 // subtotal = 0, return messageDefault
                 if (_.isUndefined(self.subtotal) || self.subtotal === 0) {
-                    return self.messageDefault;
+                    return self.messageDefault.replace('{{freeShippingThreshold}}', self.freeShippingThreshold);
                 }
                 // subtotal >0 and < 100, return messageItemsInCart
                 else if (self.subtotal > 0 && self.subtotal < self.freeShippingThreshold) {

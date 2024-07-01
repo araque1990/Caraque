@@ -13,7 +13,8 @@
                                     Caraque_FreeShippingPromo/js/free-shipping-banner
                                 </item>
                                 <item name="config" xsi:type="array">
-                                    <item name="messageDefault" xsi:type="string">Free Shipping on orders over $100! 😁
+                                    <item name="messageDefault" xsi:type="string">Free Shipping on orders over
+                                        ${{freeShippingThreshold}}!😁
                                     </item>
                                     <item name="messageItemsInCart" xsi:type="string">You're $XX.XX away from FREE
                                         shipping! 😎
@@ -24,6 +25,9 @@
                                 </item>
                             </item>
                         </item>
+                    </argument>
+                    <argument name="shipping_config_view_model" xsi:type="object">
+                        Caraque\FreeShippingPromo\ViewModel\ShippingConfig
                     </argument>
                 </arguments>
             </block>
