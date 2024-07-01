@@ -22,7 +22,9 @@
                                                 </item>
                                             </item>
                                             <item name="guarantee" xsi:type="array">
-                                                <item name="component" xsi:type="string">uiComponent</item>
+                                                <item name="component" xsi:type="string">
+                                                    Caraque_CheckoutMessages/js/view/summary/guarantee
+                                                </item>
                                                 <item name="config" xsi:type="array">
                                                     <item name="template" xsi:type="string">
                                                         Caraque_CheckoutMessages/summary/guarantee
