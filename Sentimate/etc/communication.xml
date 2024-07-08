@@ -1,5 +1,8 @@
 <?xml version="1.0"?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="urn:magento:framework:Communication/etc/communication.xsd">
-    <topic name="caraque.sentimate.reviews" request="string"/>
+    <topic name="caraque.sentimate.reviews" request="string">
+        <handler name="caraque.sentimate.reviews"
+                 type="Caraque\Sentimate\Model\ReviewConsumer" method="process"/>
+    </topic>
 </config>
