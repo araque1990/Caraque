@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="caraque_sentimate_review_sentiment" resource="default" engine="innodb"
+           comment="Review Sentiment Table">
+        <column name="review_sentiment_id" xsi:type="bigint" unsigned="true" nullable="false" identity="true"
+                comment="Review Sentiment Id"/>
+        <column name="review_id" xsi:type="bigint" nullable="false" unsigned="true" comment="Review Id"/>
+        <column name="type" xsi:type="varchar" nullable="false" length="8" comment="Review Sentiment Type"/>
+        <column name="score" xsi:type="decimal" nullable="false" precision="12" scale="10"
+                comment="Review Sentiment Score"/>
+        <column name="ratio" xsi:type="decimal" nullable="false" precision="12" scale="10"
+                comment="Review Sentiment Ratio"/>
+        <column name="created_at" xsi:type="timestamp" on_update="false" nullable="false" default="CURRENT_TIMESTAMP"
+                comment="Created At"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="review_sentiment_id"/>
+        </constraint>
+        <constraint xsi:type="foreign" referenceId="CARAQUE_SENTIMATE_REVIEW_SENTIMENT_REVIEW_ID_REVIEW_REVIEW_ID"
+                    table="caraque_sentimate_review_sentiment" column="review_id" referenceTable="review"
+                    referenceColumn="review_id" onDelete="CASCADE"/>
+    </table>
+</schema>

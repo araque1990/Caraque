@@ -9,7 +9,8 @@
             "updated_at": true
         },
         "index": {
-            "MACADEMY_MINERVA_FAQ_QUESTION": true
+            "MACADEMY_MINERVA_FAQ_QUESTION": true,
+            "CARAQUE_MINERVA_FAQ_QUESTION": true
         },
         "constraint": {
             "PRIMARY": true
