@@ -9,6 +9,8 @@ use GuzzleHttp\Client as GuzzleClient;
 use GuzzleHttp\Exception\GuzzleException;
 use Magento\Framework\Serialize\SerializerInterface;
 use Psr\Log\LoggerInterface;
+use Caraque\Sentimate\Model\ResourceModel\ReviewSentiment as ReviewSentimentResource;
+use Caraque\Sentimate\Model\ReviewSentimentFactory;
 
 class ReviewConsumer
 {
@@ -18,11 +20,15 @@ class ReviewConsumer
      * @param GuzzleClient $guzzleClient
      * @param LoggerInterface $logger
      * @param SerializerInterface $serializer
+     * @param ReviewSentimentResource $reviewSentimentResourceModel
+     * @param ReviewSentimentFactory $reviewSentimentFactory
      */
     public function __construct(
-        private readonly GuzzleClient        $guzzleClient,
-        private readonly LoggerInterface     $logger,
-        private readonly SerializerInterface $serializer
+        private readonly GuzzleClient            $guzzleClient,
+        private readonly LoggerInterface         $logger,
+        private readonly SerializerInterface     $serializer,
+        private readonly ReviewSentimentResource $reviewSentimentResourceModel,
+        private readonly ReviewSentimentFactory  $reviewSentimentFactory,
     )
     {
     }
@@ -61,10 +67,32 @@ class ReviewConsumer
                 ],
             );
 
+            $body = $response->getBody();
+            $deserializedResponse = $this->serializer->unserialize($body);
+
             $this->logger->info('Sentiment Analysis', [
                 'Message' => $deserializedMessage,
-                'Response Body' => $response->getBody(),
+                'Response Body' => $deserializedResponse,
             ]);
+
+            if (isset($deserializedResponse['type'], $deserializedResponse['score'], $deserializedResponse['ratio'])) {
+                $reviewSentiment = $this->reviewSentimentFactory->create();
+                $reviewSentiment->setData([
+                    'review_id' => $deserializedMessage['review_id'],
+                    'type' => $deserializedResponse['type'],
+                    'score' => $deserializedResponse['score'],
+                    'ratio' => $deserializedResponse['ratio'],
+                ]);
+
+                try {
+                    $this->reviewSentimentResourceModel->save($reviewSentiment);
+                } catch (Exception $e) {
+                    $this->logger->error(__('Failed to save sentiment analysis: %1', $e->getMessage()));
+                }
+            } else {
+                $stringResponse = implode(', ', $deserializedResponse);
+                $this->logger->error(__('Sentiment Analysis API did not return expected results: %1', $stringResponse));
+            }
         } catch (GuzzleException $exception) {
             $this->logger->error(__('Sentiment Analysis API returned an error: %1', $exception->getMessage()));
         } catch (Exception $exception) {
